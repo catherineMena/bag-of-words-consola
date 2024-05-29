@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="bson-4.4">
+  <library name="jsoup-1.17.2">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../../../../bson-4.4.0" />
+      <root url="jar://$USER_HOME$/Downloads/Librerias JAVA/jsoup-1.17.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

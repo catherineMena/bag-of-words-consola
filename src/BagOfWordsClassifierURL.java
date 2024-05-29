@@ -21,11 +21,10 @@ public class BagOfWordsClassifierURL {
 
     public void countWords(String phrase) {
         phrase = normalize(phrase);
-        String[] words = phrase.split("\\s+");
-        for (String word : words) {
-            wordCounts.put(word, wordCounts.getOrDefault(word, 0) + 1);
-        }
+        wordCounts.put(phrase, wordCounts.getOrDefault(phrase, 0) + 1);
     }
+
+    // Método para normalizar una frase
 
     public String normalize(String phrase) {
         phrase = phrase.toLowerCase();
@@ -40,20 +39,21 @@ public class BagOfWordsClassifierURL {
 
     // Método para obtener contenido de una URL y extraer el texto usando Jsoup
     public List<String> getWordsFromURL(String urlString) {
-        List<String> words = new ArrayList<>();
+        List<String> phrases = new ArrayList<>();
         try {
             Document doc = Jsoup.connect(urlString).get();
             Elements paragraphElements = doc.select("p"); // Seleccionar todos los párrafos
             for (Element paragraph : paragraphElements) {
                 String paragraphText = paragraph.text();
-                String[] paragraphWords = normalize(paragraphText).split("\\s+");
-                words.addAll(Arrays.asList(paragraphWords));
+                phrases.add(normalize(paragraphText));
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return words;
+        return phrases;
     }
+
+    // Método para procesar la URL y contar la frecuencia de las palabras
 
     public void processURL() {
         System.out.print("Ingrese la URL del sitio web (o escriba 'salir' para terminar): ");
@@ -84,10 +84,12 @@ public class BagOfWordsClassifierURL {
         }
     }
 
+    // Método para cerrar el scanner
     public void closeScanner() {
         scanner.close();
     }
 
+    // Método main para probar el clasificador de bolsa de palabras con una URL
     public static void main(String[] args) {
         BagOfWordsClassifierURL classifier = new BagOfWordsClassifierURL();
         Scanner scanner = classifier.scanner;
