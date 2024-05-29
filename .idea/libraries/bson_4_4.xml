@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bson-4.4">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../../../../bson-4.4.0" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

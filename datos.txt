@@ -1,0 +1,80 @@
+Hoy es un buen día | horrible | positivo
+El sol nace para todos. | meh | malísimo
+Cuando despertó, el dinosaurio todavía estaba allí. | negativo
+Pienso, luego como doritos raptor. | irrelevante
+Un día soleado es BUENO para pasear. | gran opción
+
+
+Hoy es un buen día | positivo
+El sol nace para todos. | neutro
+Cuando despertó, el dinosaurio todavía estaba allí. | negativo
+Pienso, luego como doritos raptor. | neutro
+Un día soleado es BUENO para pasear. | positivo
+La lluvia es necesaria para la vida. | positivo
+Los gatos son adorables. | positivo
+No hay nada mejor que una taza de café por la mañana. | positivo
+A veces, el silencio es la mejor respuesta. | neutro
+La música puede alegrar cualquier día gris. | positivo
+Leer un buen libro es como viajar a otros mundos. | positivo
+El chocolate es la solución a todos los problemas. | positivo
+Los abrazos pueden sanar el alma. | positivo
+Las sonrisas son contagiosas. | positivo
+El arte es una expresión del alma. | positivo
+La amabilidad nunca está de más. | positivo
+El trabajo duro siempre tiene recompensa. | positivo
+Nunca es tarde para aprender algo nuevo. | positivo
+La naturaleza nos regala belleza en cada paisaje. | positivo
+El amor lo conquista todo. | positivo
+La familia es nuestro refugio en los momentos difíciles. | positivo
+La gratitud transforma lo que tenemos en suficiente. | positivo
+La perseverancia es la clave del éxito. | positivo
+La felicidad está en las pequeñas cosas. | positivo
+La paciencia es una virtud que vale la pena cultivar. | positivo
+La esperanza es la luz que guía en la oscuridad. | positivo
+El perdón libera el corazón de cargas innecesarias. | positivo
+La honestidad es la base de todas las relaciones. | positivo
+La humildad nos mantiene conectados con nuestra esencia. | positivo
+La risa es el mejor remedio para el alma. | positivo
+La solidaridad nos hace más fuertes como sociedad. | positivo
+La empatía nos permite entender y ayudar a los demás. | positivo
+La belleza está en los ojos de quien la ve. | positivo
+La vida es un regalo que debemos apreciar cada día. | positivo
+La serenidad nos ayuda a mantener la calma en medio de la tormenta. | positivo
+El respeto es la base de toda convivencia armoniosa. | positivo
+La libertad es el derecho de todo ser humano. | positivo
+La igualdad es un ideal por el que debemos luchar. | positivo
+La diversidad enriquece nuestra experiencia como sociedad. | positivo
+La alegría se multiplica cuando se comparte. | positivo
+La honestidad consigo mismo es el primer paso hacia el crecimiento personal. | positivo
+La bondad es un idioma que todos pueden entender. | positivo
+La gratitud es la actitud que transforma lo que tenemos en suficiente. | positivo
+La amabilidad es una semilla que florece en los corazones. | positivo
+La fe mueve montañas. | positivo
+La perseverancia es la llave del éxito. | positivo
+La pasión nos impulsa a alcanzar nuestras metas. | positivo
+La resiliencia nos permite superar los desafíos de la vida. | positivo
+La autenticidad es el mayor regalo que podemos ofrecer al mundo. | positivo
+La sabiduría se adquiere con la experiencia y la reflexión. | positivo
+La compasión nos conecta con la humanidad que compartimos. | positivo
+La empatía nos permite comprender y apoyar a los demás. | positivo
+La generosidad es un acto de amor hacia los demás. | positivo
+La cooperación es la clave del progreso humano. | positivo
+La tolerancia nos permite convivir en armonía a pesar de nuestras diferencias. | positivo
+La justicia es la base de una sociedad equitativa. | positivo
+La valentía nos impulsa a enfrentar nuestros miedos. | positivo
+La integridad es la columna vertebral de la moralidad. | positivo
+La amistad es un tesoro que debemos cuidar y valorar. | positivo
+La confianza es el cimiento de todas las relaciones significativas. | positivo
+La paz interior es el camino hacia la verdadera felicidad. | positivo
+La esperanza es la fuerza que nos impulsa hacia adelante. | positivo
+La curiosidad nos lleva a descubrir nuevos horizontes. | positivo
+La imaginación nos permite crear mundos infinitos dentro de nuestra mente. | positivo
+La flexibilidad nos ayuda a adaptarnos a los cambios de la vida. | positivo
+La responsabilidad nos da el poder de moldear nuestro destino. | positivo
+La honestidad nos libera de la carga de la mentira. | positivo
+La creatividad es el motor de la innovación y el progreso. | positivo
+La gratitud nos conecta con el presente y nos abre las puertas del futuro. | positivo
+La empatía nos permite comprender la experiencia del otro. | positivo
+La generosidad nos enriquece tanto a nosotros como a los demás. | positivo
+La solidaridad nos une como comunidad y nos fortalece como sociedad. | positivo
+La amabilidad es la clave para construir relaciones significativas. | positivo
