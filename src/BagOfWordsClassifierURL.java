@@ -7,9 +7,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class BagOfWordsClassifierURL {
-    private Map<String, Integer> wordCounts;
-    private Set<String> stopwords;
+    public class BagOfWordsClassifierURL {
+        private Map<String, Integer> wordCounts;
+        private Set<String> stopwords;
     private final double SMOOTHING_FACTOR = 1.0;
     private Scanner scanner;
 

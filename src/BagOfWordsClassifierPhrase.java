@@ -1,9 +1,11 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.Normalizer;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class BagOfWordsClassifier {
+public class BagOfWordsClassifierPhrase {
     private Map<String, Map<String, Integer>> wordCountsByLabel;
     private Map<String, Integer> labelCounts;
     private Set<String> stopwords;
@@ -12,7 +14,7 @@ public class BagOfWordsClassifier {
     private Scanner scanner = new Scanner(System.in);
     private final double LAMBDA = 0.1; // Factor de regularización
 
-    public BagOfWordsClassifier() {
+    public BagOfWordsClassifierPhrase() {
         wordCountsByLabel = new HashMap<>();
         labelCounts = new HashMap<>();
         stopwords = new HashSet<>(Arrays.asList("el", "al", "e", "sus", "en", "a", "con", "se", "su", "esta", "por", "que", "del", "la", "los", "las", "un", "una", "unos", "unas", "es", "de", "cuando", "y"));
@@ -33,7 +35,6 @@ public class BagOfWordsClassifier {
             labelCounts.put(label, labelCounts.getOrDefault(label, 0) + 1);
         }
     }
-
     //---------------------------------------METODOS DE CARGA DE DATOS------------------------
     public void loadTrainingData(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -48,9 +49,8 @@ public class BagOfWordsClassifier {
             }
         }
     }
-
     //---------------------------------------METODOS DE RE-ENTRENO------------------------
-    // Recopilar datos de entrenamiento del usuario para mejorar la precisión del clasificador de palabras.
+// recopilar datos de entrenamiento del usuario para mejorar la precisión del clasificador de palabras.
     public void trainWithUserInput() {
         // Solicita al usuario que introduzca una frase para entrenar el clasificador
         System.out.println("Introduce una frase para entrenar el clasificador:");
@@ -85,18 +85,18 @@ public class BagOfWordsClassifier {
             labelProbabilities.put(label, labelProbability);
         }
 
-        // Encontrar la etiqueta con la mayor probabilidad
         return labelProbabilities.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
-                .map(entry -> entry.getKey() + " (Probabilidad: " + (entry.getValue() / sum(labelCounts.values())) + ")")
+                .map(entry -> entry.getKey() + " (Probabilidad: " + entry.getValue() + ")")
                 .orElse("Palabra no clasificada");
     }
+
 
     //---------------------------------------METODOS DE NORMALIZACION------------------------
     public String normalize(String phrase) {
         phrase = phrase.toLowerCase();
         phrase = Normalizer.normalize(phrase, Normalizer.Form.NFD); // Normalizar para eliminar tildes
-        phrase = phrase.replaceAll("[^\\p{ASCII}]", ""); // Eliminar caracteres especiales (tildes)
+        phrase = phrase.replaceAll("[^\\p{ASCII}\\s]", ""); // Eliminar caracteres especiales (tildes)
         phrase = phrase.replaceAll("[^a-zA-Z\\s]", ""); // Eliminar caracteres que no sean letras o espacios
         phrase = Arrays.stream(phrase.split("\\s+"))
                 .filter(word -> !stopwords.contains(word))
@@ -108,14 +108,8 @@ public class BagOfWordsClassifier {
         return values.stream().mapToInt(Integer::intValue).sum();
     }
 
-    private double sumDoubles(Collection<Double> values) {
-        return values.stream().mapToDouble(Double::doubleValue).sum();
-    }
-
-// ...
-
     public static void main(String[] args) {
-        BagOfWordsClassifier classifier = new BagOfWordsClassifier();
+        BagOfWordsClassifierPhrase classifier = new BagOfWordsClassifierPhrase();
 
         try {
             classifier.loadTrainingData("datos.txt");
@@ -123,31 +117,49 @@ public class BagOfWordsClassifier {
             e.printStackTrace();
         }
 
-        // Arranque en frío: Si no hay suficientes datos de entrenamiento, se solicita al usuario que ingrese datos
+//--------------------------------------ARRANQUE EN FRIO---------------------------
+// //Si no hay suficientes datos de entrenamiento, se solicita al usuario que ingrese datos
+
         if (classifier.wordCountsByLabel.isEmpty()) {
             System.out.println("No hay suficientes frases o palabras. Por favor, introduce más datos de entrenamiento.");
             classifier.trainWithUserInput();
         }
 
-        System.out.println("Ingresa una frase para clasificar (o 'salir' para terminar):");
+        System.out.println("Ingresa una palabra para clasificar (o 'salir' para terminar):");
         while (true) {
             String input = classifier.scanner.nextLine();
             if (input.equalsIgnoreCase("salir")) {
                 break;
             }
             String classification = classifier.classify(input);
-            System.out.println("La frase \"" + input + "\" es clasificada como: " + classification);
+            if (!classification.equals("Palabra no clasificada")) {
+                System.out.println("La palabra \"" + input + "\" es clasificada como: " + classification);
+                // Preguntar si desea normalizar la palabra
+                System.out.println("¿Deseas normalizar la palabra? (s/n)");
+                String choice = classifier.scanner.nextLine();
+                if (choice.equalsIgnoreCase("s")) {
+                    String normalizedWord = classifier.normalize(input);
+                    System.out.println("La palabra normalizada es: " + normalizedWord);
+                }
+            } else {
+                System.out.println("La palabra \"" + input + "\" no está clasificada.");
 
-            // Preguntar si desea normalizar la frase
-            System.out.println("¿Deseas normalizar la frase? (s/n)");
-            String choice = classifier.scanner.nextLine();
-            if (choice.equalsIgnoreCase("s")) {
-                String normalizedPhrase = classifier.normalize(input);
-                System.out.println("La frase normalizada es: " + normalizedPhrase);
+
+                // ------------------MEJORA DE RECOMENDACIONES---------------------
+                // Preguntar si desea agregar la frase al conjunto de entrenamiento
+
+                System.out.println("¿Deseas agregar esta frase al conjunto de entrenamiento? (s/n)");
+                String choice = classifier.scanner.nextLine();
+                if (choice.equalsIgnoreCase("s")) {
+                    System.out.println("Introduce las etiquetas para la frase (separadas por '|'):");
+                    String labels = classifier.scanner.nextLine();
+                    classifier.train(input, labels);
+                }
             }
 
-            System.out.println("Ingresa otra frase (o 'salir' para terminar):");
+            System.out.println("Ingresa otra palabra (o 'salir' para terminar):");
         }
         classifier.scanner.close();
     }
 }
+
