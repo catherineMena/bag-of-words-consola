@@ -32,7 +32,6 @@ public class BagOfWordsClassifier {
         }
     }
 
-
     public void loadTrainingData(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -46,6 +45,29 @@ public class BagOfWordsClassifier {
             }
         }
     }
+
+    public void evaluate(String testFilename) throws IOException {
+        int correct = 0;
+        int total = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(testFilename))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split("\\|", 2);
+                if (parts.length == 2) {
+                    String phrase = parts[0].trim();
+                    String actualLabel = parts[1].trim();
+                    String predictedLabel = classify(phrase);
+                    if (predictedLabel.contains(actualLabel)) {
+                        correct++;
+                    }
+                    total++;
+                }
+            }
+        }
+        double accuracy = (double) correct / total;
+        System.out.println("Accuracy: " + accuracy);
+    }
+
     public String classify(String phrase) {
         String normalizedPhrase = normalize(phrase);
         String[] words = normalizedPhrase.split("\\s+");
@@ -87,7 +109,6 @@ public class BagOfWordsClassifier {
         return result.toString();
     }
 
-
     public String normalize(String phrase) {
         phrase = phrase.toLowerCase();
         phrase = Normalizer.normalize(phrase, Normalizer.Form.NFD); // Normalizar para eliminar tildes
@@ -111,6 +132,12 @@ public class BagOfWordsClassifier {
         if (classifier.wordCountsByLabel.isEmpty()) {
             System.out.println("No hay suficientes frases o palabras.");
             return;
+        }
+
+        try {
+            classifier.evaluate("datos.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         Scanner scanner = new Scanner(System.in);
