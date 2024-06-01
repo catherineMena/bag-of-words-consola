@@ -124,7 +124,7 @@ public class BagOfWordsClassifier {
         BagOfWordsClassifier classifier = new BagOfWordsClassifier();
 
         try {
-            classifier.loadTrainingData("datos.txt");
+            classifier.loadTrainingData("prueba1.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -135,7 +135,7 @@ public class BagOfWordsClassifier {
         }
 
         try {
-            classifier.evaluate("datos.txt");
+            classifier.evaluate("prueba1.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -161,7 +161,7 @@ public class BagOfWordsClassifier {
                 System.out.println("La frase \"" + input + "\" no está clasificada.");
             }
 
-            System.out.println("Ingresa una vez mas otra  frase (o 'salir' para terminar):");
+            System.out.println("Ingresa otra frase (o 'salir' para terminar):");
         }
         scanner.close();
     }
