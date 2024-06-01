@@ -42,14 +42,31 @@ public class BagOfWordsLabels {
         phrase = Normalizer.normalize(phrase, Normalizer.Form.NFD); // Normalizar para eliminar tildes
         phrase = phrase.replaceAll("[^\\p{ASCII}\\s]", ""); // Eliminar caracteres especiales (tildes)
         phrase = phrase.replaceAll("[^a-zA-Z\\s]", ""); // Eliminar caracteres que no sean letras o espacios
-        phrase = Arrays.stream(phrase.split("\\s+"))
-                .filter(word -> !stopwords.contains(word))
-                .collect(Collectors.joining(" "));
         return phrase;
     }
 
     public Set<String> getPhrasesByLabel(String label) {
         return phrasesByLabel.getOrDefault(label, new HashSet<>());
+    }
+
+    public Map<String, Integer> countPhrasesByLabel() {
+        Map<String, Integer> countMap = new HashMap<>();
+        for (String label : phrasesByLabel.keySet()) {
+            countMap.put(label, phrasesByLabel.get(label).size());
+        }
+        return countMap;
+    }
+
+    public void printAllPhrasesWithLabels() {
+        for (String label : phrasesByLabel.keySet()) {
+            System.out.println("Etiqueta: " + label);
+            System.out.println("Frases:");
+            Set<String> phrases = phrasesByLabel.get(label);
+            for (String phrase : phrases) {
+                System.out.println("- " + phrase);
+            }
+            System.out.println("Total de frases en esta etiqueta: " + phrases.size() + "\n");
+        }
     }
 
     public static void main(String[] args) {
@@ -67,23 +84,27 @@ public class BagOfWordsLabels {
         }
 
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Ingrese una etiqueta para mostrar las frases asociadas (o 'salir' para terminar):");
         while (true) {
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("salir")) {
                 break;
-            }
-            Set<String> phrases = classifier.getPhrasesByLabel(input);
-            if (!phrases.isEmpty()) {
-                System.out.println("Frases con la etiqueta '" + input + "':");
-                for (String phrase : phrases) {
-                    System.out.println("- " + phrase);
-                }
+            } else if (input.equalsIgnoreCase("todas")) {
+                classifier.printAllPhrasesWithLabels();
             } else {
-                System.out.println("No hay frases asociadas a la etiqueta '" + input + "'.");
+                Set<String> phrases = classifier.getPhrasesByLabel(input);
+                if (!phrases.isEmpty()) {
+                    System.out.println("Frases con la etiqueta '" + input + "':");
+                    for (String phrase : phrases) {
+                        System.out.println("- " + phrase);
+                    }
+                    System.out.println("Total de frases en esta etiqueta: " + phrases.size());
+                } else {
+                    System.out.println("No hay frases asociadas a la etiqueta '" + input + "'.");
+                }
             }
-
-            System.out.println("Ingrese otra etiqueta (o 'salir' para terminar):");
+            System.out.println("Ingrese otra etiqueta o 'todas' para ver todas las frases con sus etiquetas (o 'salir' para terminar):");
         }
         scanner.close();
     }

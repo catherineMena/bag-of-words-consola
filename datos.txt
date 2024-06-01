@@ -2,3 +2,22 @@ Buenos días|saludo
 ¿Cómo estás?|saludo
 Adiós|despedida
 Hasta luego|despedida
+¿Puedes ayudarme, por favor?|solicitud
+Gracias por tu colaboración.|agradecimiento
+¡Qué tengas un excelente día!|saludo
+Por favor, pásame la sal.|solicitud
+I don't want to keep doing this. |saludo
+Gracias por estar siempre ahí.|saludo
+¿Podrías repetir eso, por favor?|solicitud
+¡Qué gusto verte de nuevo!|saludo
+Gracias por la oportunidad.|agradecimiento
+Por favor, no te vayas.|solicitud
+¿Puedo ayudarte con algo?|solicitud
+Gracias por tu amabilidad.|agradecimiento
+¡Nos vemos pronto!|saludo
+Por favor, cuídate.|solicitud
+Gracias por tu paciencia.|agradecimiento
+¡Hasta pronto!|despedida
+Por favor, dime qué necesitas.|solicitud
+Gracias por tu tiempo.|agradecimiento
+Por favor, sé honesto conmigo.|solicitud
