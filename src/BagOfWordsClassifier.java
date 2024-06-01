@@ -161,7 +161,7 @@ public class BagOfWordsClassifier {
                 System.out.println("La frase \"" + input + "\" no está clasificada.");
             }
 
-            System.out.println("Ingresa otra frase (o 'salir' para terminar):");
+            System.out.println("Ingresa una vez mas otra  frase (o 'salir' para terminar):");
         }
         scanner.close();
     }
